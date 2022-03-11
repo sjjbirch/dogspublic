@@ -1,0 +1,26 @@
+<div class="container">
+
+    <h1><%= @litter.identifier %></h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Planned Date</th>
+                <th>Expected Date</th>
+                <th>Actual Date</th>
+                <th>Expected Size</th>
+                <th>Actual Size</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><%= @litter.planned_date %></td>
+                <td><%= @litter.expected_date %></td>
+                <td><%= @litter.actual_date%></td>
+                <td><%= @litter.expected_size%></td>
+                <td><%= @litter.actual_size%></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

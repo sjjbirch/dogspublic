@@ -1,0 +1,37 @@
+
+<h1>Litters</h1>
+
+<%= link_to 'New Litter', new_litter_path %>
+
+<br>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Planned Date</th>
+            <th>Expected Date</th>
+            <th>Actual Date</th>
+            <th>Expected Size</th>
+            <th>Actual Size</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @litters.each do |litter| %>
+            <tr>
+                <td><%= litter.identifier %></td>
+                <td><%= litter.planned_date %></td>
+                <td><%= litter.expected_date %></td>
+                <td><%= litter.actual_date %></td>
+                <td><%= litter.expected_size %></td>
+                <td><%= litter.actual_size %></td>
+                <%# remove hover and active effects on buttons at some point %>
+                <td><%= link_to 'Show', litter, type: "button", class: "btn btn-success" %></td>
+                <td><%= link_to 'Edit', edit_litter_path(litter), type: "button", class: "btn btn-warning" %></td>
+                <td><%= link_to 'Destroy', litter, method: :delete,
+                data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

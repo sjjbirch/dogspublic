@@ -1,0 +1,36 @@
+<h1>Update <%= @litter.identifier %></h1>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @litter, local: true) do |f| %>
+
+            <%= f.label :identifier %>
+            <%= f.text_field :identifier, class: 'form-control' %>
+
+            <%= f.label :planned_date %>
+            <%= f.date_field :planned_date, class: 'form-control' %>
+
+            <%= f.label :expected_date %>
+            <%= f.date_field :expected_date, class: 'form-control' %>
+
+            <%= f.label :actual_date %>
+            <%= f.date_field :actual_date, class: 'form-control' %>
+
+            <%= f.label :expected_size %>
+            <%= f.number_field :expected_size, class: 'form-control' %>
+
+            <%= f.label :actual_size %>
+            <%= f.number_field :actual_size, class: 'form-control' %>
+
+            <div data-controller="multi-upload">
+                <div class="gallery_image">
+                    <%= f.label :gallery_image %>
+                    <%= f.file_field :gallery_image, :multiple => true, :data => {:action => "multi-upload#addFile"} %>
+                </div>
+
+                <div data-multi-upload-target="files"></div>
+            </div>
+            <%= f.submit "Save changes", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

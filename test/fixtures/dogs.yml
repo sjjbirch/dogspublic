@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rname: MyString
+  cname: MyString
+  dob: 2022-01-19
+  owner: MyString
+  handler: MyString
+  sex: MyString
+  status: MyString
+
+two:
+  rname: MyString
+  cname: MyString
+  dob: 2022-01-19
+  owner: MyString
+  handler: MyString
+  sex: MyString
+  status: MyString
