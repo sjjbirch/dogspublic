@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
-  devise_for :users
+  
   # authentication pages
+  devise_for :users
   devise_for :admins
 
   # static pages
