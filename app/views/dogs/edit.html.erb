@@ -1,0 +1,44 @@
+<h1>Update <%= @dog.rname %></h1>
+<p><%= link_to "Take me back!", dogs_path %> </p>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @dog, local: true) do |f| %>
+        
+            <%= f.label :rname, "Real Name" %>
+            <%= f.text_field :rname, class: 'form-control' %>
+
+            <%= f.label :cname, "Call Name" %>
+            <%= f.text_field :cname, class: 'form-control' %>
+
+            <%= f.label :dob, "DOB" %>
+            <%= f.date_field :dob, class: 'form-control' %>
+
+            <%= f.label :owner, "Owner" %>
+            <%= f.text_field :owner, class: 'form-control' %>
+
+            <%= f.label :handler, "Handler" %>
+            <%= f.text_field :handler, class: 'form-control' %>
+
+            <%= f.submit "Update dog", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
+
+            <%# <th>Real Name</th> text
+            <th>Call Name</th> text
+            <th>Breed</th> text
+            <th>DOB</th> date
+            <th>Breeder</th> fk?
+            <th>Owner</th> text
+            <th>Handler</th> text
+            <th>Sex</th> dropdown
+            <th>Test Results</th> fk?
+            <th>Parentage</th> fk ?
+            <th>Status</th> dropdown
+            <th>Litter</th> fk %> 
+
+            <%# sex %>
+
+            <%# status %>
+
+            <%# Missing because fk: Breed, Breeder, tests, litter, parentage pictures %>

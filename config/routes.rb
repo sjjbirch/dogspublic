@@ -19,7 +19,12 @@ Rails.application.routes.draw do
   get 'litter_gallery', to: 'litters#gallery'
 
   # dog pages
-  resources :dogs
+  resources :dogs do
+    resources :adverts, except: :index
+  end
+
+  get 'adverts', to: 'adverts#index', as: :adverts
+  
   get 'boys', to: 'dog#boys'
   get 'girls', to: 'dog#girls'
   get 'retired', to: 'dog#retired'

@@ -1,0 +1,28 @@
+<div class="container">
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Ad Title</th>
+            <th>Ad Description</th>
+            <th>Price</th>
+            <th>Advertising account</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @adverts.each do |advert| %>
+            <tr>
+                <td><%= advert.title %></td>
+                <td><%= advert.description %></td>
+                <td> <%= "Placeholder" %> </td>
+                <td> <%= advert.dog.user.email %> </td>
+                <td><%= link_to 'View Ad', dog_advert_path(advert.dog, advert) %></td>
+                <td><%= link_to 'Buy Now', "#" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+
+</table>
+
+    
+<%= link_to "Back to my dogs", dogs_path %>
