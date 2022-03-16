@@ -24,6 +24,13 @@
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
+
+          <!--- debug output --->
+    <% if Rails.env.development? %>
+      <%= render 'layouts/debug' %>
+    <% else %>
+    <% end %>
+    
     </div>
   </body>
 </html>

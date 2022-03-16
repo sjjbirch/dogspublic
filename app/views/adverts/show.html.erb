@@ -2,5 +2,6 @@
 
     <h1><%= @advert.title %></h1>
     <p> <%= @advert.description %></p>
+    <p><%= link_to 'Buy Now', buy_path(id: advert.id) %></p>
     
 <%= link_to "Back to my dogs", dogs_path %>

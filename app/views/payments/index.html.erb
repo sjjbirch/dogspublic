@@ -1,0 +1,34 @@
+<div class="container">
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Payment Number</th>
+            <th>Dog Bought</th>
+            <th>Buyer</th>
+            <th>Seller</th>
+            <th>Time Bought</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @payments.each do |payment| %>
+            <tr>
+                <td><%= payment.id %></td>
+                <% if payment.dogsold.present? %>
+                    <% @dog = Dog.find(payment.dogsold) %>
+                    <td><%= @dog.rname %></td>
+                <% else %>
+                    <td><%= "Not recorded" %></td>
+                <% end %>
+                <td> <%= payment.buyer.email %> </td>
+                <td> <%= payment.seller.email %> </td>
+                <td> <%= payment.transaction_time %> </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+
+</table>
+
+    
+<%= link_to "Back to my dogs", dogs_path %>

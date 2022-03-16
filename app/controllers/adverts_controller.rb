@@ -12,7 +12,25 @@ class AdvertsController < ApplicationController
         flash[:success] = "You can't do that unless you own it."
         redirect_to dogs_path
     end
-end
+ end
+
+ def buy
+   @advert = Advert.find(params[:id])
+   @dog = @advert.dog
+   @seller = @dog.user.id
+   @buyer = current_user
+   Payment.new(buyer_id: @buyer.id, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
+
+   if @dog.update(user_id: @buyer.id )
+      flash[:success] = "Dog Bought"
+      redirect_to dogs_path
+   else
+      flash[:success] = "Dog NOT Bought"
+      redirect_to root_path
+   end
+   # @payment = Payment.new
+   # @dog.update(user_id: @buyer)
+ end
 
  def new
     @dog = Dog.find(params[:dog_id])

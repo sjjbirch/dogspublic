@@ -22,13 +22,14 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :adverts, except: :index
   end
-
   get 'adverts', to: 'adverts#index', as: :adverts
-  
+  get '/buy', to: 'adverts#buy'
+
   get 'boys', to: 'dog#boys'
   get 'girls', to: 'dog#girls'
   get 'retired', to: 'dog#retired'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/payments', to: 'payments#index'
 
 end
