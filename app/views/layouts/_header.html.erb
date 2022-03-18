@@ -6,11 +6,11 @@
             <% if user_signed_in? %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    My account <b class="caret"></b>
+                    <%= current_user.email %> <b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
                             <li><%= link_to "My Dogs", dogs_path %></li>
-                            <li><%= link_to "My Ads", '#' %></li>
+                            <li><%= link_to "My Ads", '/my_ads' %></li>
                             <li><%= link_to "Sale history", payments_path %></li>
                             <li class="divider"></li>
                             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
@@ -19,12 +19,9 @@
             <% else %>
                 <li><%= link_to "Login or create an account", new_user_session_path, method: :get %></li>
             <% end %>
-
-                <li><%= link_to "About", about_path %></li>
-                <li><%= link_to "Info", info_path %></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Dogs <b class="caret"></b>
+                    Shop for dogs <b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
                             <li><%= link_to "All dogs", adverts_path %></li>

@@ -77,7 +77,7 @@ end
 
   def destroy
     @dog = Dog.find(params[:id])
-    if @dog.delete
+    if @dog.destroy
       flash[:success] = "Dog deleted"
       redirect_to dogs_path
     else

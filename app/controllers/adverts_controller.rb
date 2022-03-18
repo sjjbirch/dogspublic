@@ -19,17 +19,22 @@ class AdvertsController < ApplicationController
    @dog = @advert.dog
    @seller = @dog.user.id
    @buyer = current_user
-   Payment.new(buyer_id: @buyer.id, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
 
-   if @dog.update(user_id: @buyer.id )
-      flash[:success] = "Dog Bought"
-      redirect_to dogs_path
+   if @seller == @buyer.id
+      flash[:success] = "You can't buy your own dog"
+      redirect_to '/adverts'
    else
-      flash[:success] = "Dog NOT Bought"
-      redirect_to root_path
-   end
-   # @payment = Payment.new
-   # @dog.update(user_id: @buyer)
+         if Payment.new(buyer_id: @buyer.id, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
+            @advert.delete
+            @dog.update(user_id: @buyer.id )
+            flash[:success] = "Dog Bought"
+            redirect_to dogs_path
+         else
+            flash[:success] = "Dog NOT Bought"
+            redirect_to root_path
+         end
+
+      end
  end
 
  def new
@@ -55,8 +60,12 @@ class AdvertsController < ApplicationController
  end
 
  def index
-    @adverts = Advert.all
+   @adverts = Advert.order(created_at: :asc)
   end
+
+  def myads
+  @adverts = current_user.adverts
+   end
   
 
  def show
@@ -64,12 +73,29 @@ class AdvertsController < ApplicationController
  end
 
  def edit
+   @advert = Advert.find(params[:id])
  end
 
  def update
+   @advert = Advert.find()
+   if @advert.update(ad_params)
+     flash[:success] = "Ad updated"
+     redirect_to dog_advert_path()
+   else
+     flash[:success] = "Ad update failed"
+     render :edit
+   end
  end
 
  def destroy
+   @advert = Advert.find(params[:id])
+   if @advert.destroy
+      flash[:success] = "Dog no longer advertised."
+      redirect_to '/my_ads'
+   else
+      flash[:success] = "Advert is still up"
+      redirect_to '/my_ads'
+   end
  end
 
 end

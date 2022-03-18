@@ -1,13 +1,17 @@
 <!--- come back to this and interpolate so it's a bit neater --->
 
-<p>Dog info:</p>
-<%= debug(@dog) %>
-<p>Advert info:</p>
-<%= debug(@advert) %>
-<p>Current working params:</p>
-<%= debug(params) %>
-<%= params.inspect %>
-<p>User</p>
-<%= debug(@user) %>
-<p>devise currentuser</p>
-<%= debug(current_user) %>
+<div class="container well">
+    <h2>dev env debug partial</h2>
+
+    <p>Dog info:</p>
+        <%= debug(@dog) %>
+    <p>Advert info:</p>
+        <%= debug(@advert) %>
+    <p>Current working params:</p>
+        <%= debug(params) %>
+        <%= params.inspect %>
+    <p>User</p>
+        <%= debug(@user) %>
+    <p>devise currentuser</p>
+        <%= debug(current_user) %>
+</div>

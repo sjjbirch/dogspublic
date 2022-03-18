@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :adverts, except: :index
   end
-  get 'adverts', to: 'adverts#index', as: :adverts
+  get 'adverts', to: 'adverts#index'#, as: :adverts
+  get '/my_ads', to: 'adverts#myads'
   get '/buy', to: 'adverts#buy'
 
   get 'boys', to: 'dog#boys'

@@ -4,56 +4,49 @@
 <%= link_to 'New Dog', new_dog_path %>
 
 <br>
-
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Real Name</th>
-            <th>Call Name</th>
-            <th>DOB</th>
-            <th>Breeder</th>
-            <th>Owner</th>
-            <th>Handler</th>
-            <th>Sex</th>
-            <th>Test Results</th>
-            <th>Parentage</th>
-            <th>Status</th>
-            <th>Litter</th>
-            <th>Associated Account</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @dogs.each do |dog| %>
+<div class="container">
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td><%= dog.rname %></td>
-                <td><%= dog.cname %></td>
-                <td><%= dog.dob %></td>
-                <td><%= "breeder placeholder" %></td>
-                <td><%= dog.owner %></td>
-                <td><%= dog.handler %></td>
-                <td><%= dog.sex %></td>
-                <td><%= "test placeholder" %></td>
-                <td><%= "parentage placeholder" %></td>
-                <td><%= "status placeholder"%></td>
-                <td><%= "litter placeholder" %></td>
-                <td><%= dog.user.email %></td>
-                <%# remove hover and active effects on buttons at some point %>
-                <%# if has attached advert then show, if no attached then new %>
-                <% if dog.advert.nil? %>
-                    <td><%= link_to 'Create Ad', new_dog_advert_path(dog.id),  
-                     type: "button", class: "btn btn-primary" %></td>
-                <% else %>
-                    <td><%= link_to 'View Ad', dog_advert_path(dog, dog.advert),
-                    # <td><%= link_to 'View Ad', "#", method: :get, 
-                     type: "button", class: "btn btn-primary" %></td>
-                <% end %>
-                <td><%= link_to 'Show', dog, type: "button", class: "btn btn-success" %></td>
-                <td><%= link_to 'Edit', edit_dog_path(dog), type: "button", class: "btn btn-warning" %></td>
-                <td><%= link_to 'Destroy', dog, method: :delete,
-                data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
+                <th>Real Name</th>
+                <th>Call Name</th>
+                <th>DOB</th>
+                <th>Owner</th>
+                <th>Handler</th>
+                <th>Sex</th>
+                <th>Litter</th>
+                <th>Associated Account</th>
             </tr>
-        <% end %>
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+            <% @dogs.each do |dog| %>
+                <tr>
+                    <td><%= dog.rname %></td>
+                    <td><%= dog.cname %></td>
+                    <td><%= dog.dob %></td>
+                    <td><%= dog.owner %></td>
+                    <td><%= dog.handler %></td>
+                    <td><%= dog.sex %></td>
+                    <td><%= "litter placeholder" %></td>
+                    <td><%= dog.user.email %></td>
+                    <%# remove hover and active effects on buttons at some point %>
+                    <%# if has attached advert then show, if no attached then new %>
+                    <% if dog.advert.nil? %>
+                        <td><%= link_to 'Create Ad', new_dog_advert_path(dog.id),  
+                        type: "button", class: "btn btn-primary" %></td>
+                    <% else %>
+                        <td><%= link_to 'View Ad', dog_advert_path(dog, dog.advert),
+                        # <td><%= link_to 'View Ad', "#", method: :get, 
+                        type: "button", class: "btn btn-primary" %></td>
+                    <% end %>
+                    <td><%= link_to 'More details', dog, type: "button", class: "btn btn-success" %></td>
+                    <td><%= link_to 'Edit', edit_dog_path(dog), type: "button", class: "btn btn-warning" %></td>
+                    <td><%= link_to 'Destroy', dog, method: :delete,
+                    data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+
+    </table>
+</div>
