@@ -23,6 +23,14 @@ textarea {
     margin-bottom: 10px;
     }
 
+    .alert-notice { 
+        @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text)
+    }
+  
+    .alert-alert {
+        @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text)
+    }
+
     /* typography */
 h1, h2, h3, h4, h5, h6 {
     line-height: 1;

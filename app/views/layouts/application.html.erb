@@ -12,23 +12,17 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%# these alerts aren't working %>
-    <%# they appear behind the header %>
-    <%# this is just a styling problem %>
+    <%= render 'layouts/flashes' %>
+
     <div class="container">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-info alert-dismissible fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%= message %>
-        </div>
-      <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
+    </div>
+
+    <%= render 'layouts/footer' %>
 
           <!--- debug output --->
     <% if Rails.env.development? %>
       <%= render 'layouts/debug' %>
-    <% else %>
     <% end %>
     
     </div>

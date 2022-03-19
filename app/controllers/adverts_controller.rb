@@ -1,40 +1,50 @@
 class AdvertsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show]
-    before_action :ownership_filter, only: [:update, :edit, :destroy]
+    before_action :god_skip, except: [:index, :show]
+    before_action :advert_instancer, only: [:show, :ad_ownership_filter, :buy,
+                                             :edit, :destroy ]
+    before_action :ad_ownership_filter, only: [:update, :edit, :destroy]
+
+ def index
+   @adverts = Advert.order(created_at: :asc)
+ end
+
+ def show
+ end
 
  def ad_params
     params.require(:advert).permit( :title, :description)
  end
 
- def ownership_filter
-    @advert = Advert.find(params[:id])
-    unless current_user.id == @advert.dog.user.id
+ def advert_instancer
+   @advert = Advert.find(params[:id])
+ end
+
+ def ad_ownership_filter
+    unless @advert.dog.user.id == current_user.id 
         flash[:success] = "You can't do that unless you own it."
         redirect_to dogs_path
     end
  end
 
  def buy
-   @advert = Advert.find(params[:id])
    @dog = @advert.dog
    @seller = @dog.user.id
-   @buyer = current_user
+   @buyer = current_user.id
 
-   if @seller == @buyer.id
-      flash[:success] = "You can't buy your own dog"
-      redirect_to '/adverts'
+   if @seller == @buyer
+      flash[:danger] = "You can't buy your own dog"
+      redirect_back(fallback_location: adverts_path)
    else
-         if Payment.new(buyer_id: @buyer.id, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
-            @advert.delete
-            @dog.update(user_id: @buyer.id )
-            flash[:success] = "Dog Bought"
-            redirect_to dogs_path
-         else
-            flash[:success] = "Dog NOT Bought"
-            redirect_to root_path
-         end
-
+      if Payment.new(buyer_id: @buyer, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
+         @advert.delete
+         @dog.update(user_id: @buyer )
+         flash[:success] = "Dog Bought"
+         redirect_to dogs_path
+      else
+         flash[:success] = "Dog NOT Bought"
+         redirect_back(fallback_location: adverts_path)
       end
+   end
  end
 
  def new
@@ -59,21 +69,11 @@ class AdvertsController < ApplicationController
     end
  end
 
- def index
-   @adverts = Advert.order(created_at: :asc)
-  end
-
   def myads
   @adverts = current_user.adverts
    end
-  
-
- def show
-    @advert = Advert.find(params[:id])
- end
 
  def edit
-   @advert = Advert.find(params[:id])
  end
 
  def update
@@ -88,7 +88,6 @@ class AdvertsController < ApplicationController
  end
 
  def destroy
-   @advert = Advert.find(params[:id])
    if @advert.destroy
       flash[:success] = "Dog no longer advertised."
       redirect_to '/my_ads'
