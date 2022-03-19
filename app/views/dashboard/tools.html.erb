@@ -1,15 +1,1 @@
-<h1>Dashboard#tools</h1>
-<p>Find me in app/views/dashboard/tools.html.erb</p>
-
-<div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-            <%# manage dog left active just so I remember the class for later %>
-                <li class="active"> <%= link_to "Manage Dogs", dogs_path %> </li>
-                <li> <%= link_to "Manage Litters", litters_path %> </li>
-                <li> <%= link_to "Manage Users", '/userlist' %> </li>
-            </ul>
-        </div>
-    </nav>
-</div>
+<%= render 'dashboard/admintoolbar' %>

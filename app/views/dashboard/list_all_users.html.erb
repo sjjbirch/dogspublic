@@ -1,23 +1,31 @@
+<%= render 'dashboard/admintoolbar' %>
+
 <h1>User List</h1>
 
 <div class="container">
     <table class="table table-striped table-hover">
         <thead>
             <tr>
+                <th>User ID</th>
                 <th>User Email</th>
                 <th>Purchases</th>
                 <th>Sales</th>
                 <th>Last Active</th>
+                <th>Last IP</th>
             </tr>
         </thead>
 
         <tbody>
             <% @users.each do |user| %>
                 <tr>
+                    <td><%= user.id %></td>
                     <td><%= user.email %></td>
                     <td><%= user.buyer_payments.count %></td>
                     <td><%= user.seller_payments.count %></td>
-                    <td><%= user.last_sign_in_at %></td>
+                    <td><%= user.sign_in_count != 0 ? user.last_sign_in_at : 'Never signed in' %></td>
+                    <td><%= user.last_sign_in_ip %></td>
+                    <td><%= link_to 'B&?', ban_path(id: user.id), 
+                    data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
                 </tr>
             <% end %>
         </tbody>

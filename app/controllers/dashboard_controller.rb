@@ -6,18 +6,21 @@ class DashboardController < ApplicationController
 
   def list_all_users
     @users = User.all
-    
   end
 
   def banhammer
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:success] = "User deleted"
-      redirect_to dogs_path
+      flash[:success] = "User B&"
+      redirect_to userlist_path
     else
-      flash[:success] = "Dog deletion failed"
-      render 'index'
+      flash[:success] = "Evaded"
+      render :userlist
     end
+  end
+
+  def list_all_dogs
+    @dogs = Dog.all
   end
 
 end

@@ -2,7 +2,7 @@
 
 <div class="container">
 <h2>Dogs sold:</h2>
-<% if @paymentss.nil? %>
+<% if @paymentss.count == 0 %>
     <p>Looks like you haven't sold any dogs yet!</p>
 <% else %>
     <table class="table table-striped table-hover">
@@ -38,7 +38,7 @@
     
 <div class="container">
 <h2>Dogs bought:</h2>
-<% if @paymentsb.nil? %>
+<% if @paymentsb.count == 0 %>
     <p>Looks like you haven't bought any dogs yet!</p>
 <% else %>
     <table class="table table-striped table-hover">
