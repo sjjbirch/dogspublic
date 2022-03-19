@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# create users
+puts 'Creating users'
 user_list = [
     [ 'test1@test.com', 'qwerty' ],
     [ 'test2@test.com', 'qwerty' ],
@@ -18,10 +18,10 @@ user_list.each do |email, password|
     User.create!( email: email, password: password, password_confirmation: password )
 end
 
-# create an admin
+puts 'Creating an admin'
 Admin.create!( email: 'admin@test.com', password: 'qwerty', password_confirmation: 'qwerty' )
 
-# create three dogs
+puts 'Creating dogs'
 dog_list = [
     [ 'Doggo 1', 'Fido', 'John Smith', 'Mary Poppins', 'M', 1 ],
     [ 'Doggo 2', 'Lassie', 'James May', 'Sue Tylerson', 'F', 2 ],
@@ -36,7 +36,7 @@ dog_list.each do |rname, cname, owner, handler, sex, account|
     date = date - 45.days
 end
 
-# create some payments
+puts 'Creating some payments'
 payment_list = [
     [ 2, 1, 1 ],
     [ 1, 2, 3 ],
@@ -49,11 +49,16 @@ payment_list.each do | seller, buyer, dog |
     payment.save!
 end
 
-# create a litter with some pictures attached
+puts 'Advertising one of the dogs'
 
+Advert.create( dog_id: 1, title: 'Attempting to sell dog 1', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum dui quis sem dictum, at ultricies dolor malesuada. Sed ut maximus tellus, at hendrerit leo. Sed posuere scelerisque sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam ultrices a neque quis aliquet. Praesent placerat blandit elit a ultrices. Donec magna nibh, malesuada sit amet ornare in, convallis nec mauris. ')
+
+puts 'Creating a litter'
 Litter.create!( planned_date: 386.days.ago, expected_date: 383.days.ago, 
                 actual_date: 384.days.ago, expected_size: 8, actual_size: 6,
                 identifier: 'CuteLitter' )
+
+puts 'Adding active storage pictures to the litter'
 
 @litter = Litter.first
 @litter.gallery_image.attach(io: File.open(Rails.root.join("app", "assets", "images", "Pic1.jpg")),
@@ -62,4 +67,5 @@ Litter.create!( planned_date: 386.days.ago, expected_date: 383.days.ago,
                             filename: 'Pic1.jpg', content_type: 'image/jpeg')
 @litter.gallery_image.attach(io: File.open(Rails.root.join("app", "assets", "images", "Pic3.gif")),
                             filename: 'Pic1.jpg', content_type: 'image/jpeg')
-                            
+
+puts 'Seeded database for your pleasure'
