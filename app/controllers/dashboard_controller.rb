@@ -10,13 +10,24 @@ class DashboardController < ApplicationController
 
   def banhammer
     @user = User.find(params[:id])
-    if @user.destroy
-      flash[:success] = "User B&"
-      redirect_to userlist_path
-    else
-      flash[:success] = "Evaded"
-      render :userlist
+    banner(@user)
+    undogger(@user)
+    hammerflasher(@user)
+    redirect_to userlist_path
+  end
+
+  def banner(user)
+    user.toggle(:banned).save
+  end
+
+  def undogger(user)
+    user.dogs.each do | dog |
+      dog.advert.try(:destroy)
     end
+  end
+
+  def hammerflasher(user)
+    @user.banned? ? (flash[:success] = "User B&") : (flash[:success] = "User unB&")
   end
 
   def list_all_dogs

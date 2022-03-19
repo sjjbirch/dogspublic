@@ -19,8 +19,10 @@
                 <td><%= advert.description %></td>
                 <td> <%= "Placeholder" %> </td>
                 <td> <%= advert.dog.user.email %> </td>
-                <td><%= link_to 'View Ad', dog_advert_path(advert.dog, advert) %></td>
-                <td><%= link_to 'Buy Now', buy_path(id: advert.id) %></td>
+                <td><%= link_to 'View Ad', dog_advert_path(advert.dog, advert),
+                type: "button", class: "btn btn-primary" %></td>
+                <td><%= link_to 'Buy Now', buy_path(id: advert.id),
+                type: "button", class: "btn btn-success" %></td>
                 <td> Posted <%= time_ago_in_words(advert.created_at) %> ago. </td>
             </tr>
         <% end %>

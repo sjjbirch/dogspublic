@@ -4,26 +4,27 @@
     <p> <%= @advert.description %></p>
     <p><%= link_to 'Buy Now', buy_path(id: @advert.id) %></p>
 
+    <h2>Details about <%= @advert.dog.cname %></h2>
      <table class="table">
         <thead>
             <tr>
                 <th>Real Name</th>
-                <th>Call Name</th>
                 <th>DOB</th>
-                <th>Owner</th>
+                <th>Breeder</th>
                 <th>Handler</th>
                 <th>Sex</th>
+                <th>Owner</th>
             </tr>
         </thead>
 
         <tbody>
             <tr>
                 <td><%= @advert.dog.rname %></td>
-                <td><%= @advert.dog.cname %></td>
                 <td><%= @advert.dog.dob %></td>
-                <td><%= @advert.dog.owner %></td>
+                <td><%= @advert.dog.breeder %></td>
                 <td><%= @advert.dog.handler %></td>
                 <td><%= @advert.dog.sex %></td>
+                <td><%= @advert.dog.user.email %></td>
             </tr>
         </tbody>
     </table>

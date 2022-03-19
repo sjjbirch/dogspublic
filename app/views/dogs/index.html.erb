@@ -13,7 +13,7 @@
                 <th>Real Name</th>
                 <th>Call Name</th>
                 <th>DOB</th>
-                <th>Owner</th>
+                <th>Breeder</th>
                 <th>Handler</th>
                 <th>Sex</th>
                 <th>Litter</th>
@@ -27,7 +27,7 @@
                     <td><%= dog.rname %></td>
                     <td><%= dog.cname %></td>
                     <td><%= dog.dob %></td>
-                    <td><%= dog.owner %></td>
+                    <td><%= dog.breeder %></td>
                     <td><%= dog.handler %></td>
                     <td><%= dog.sex %></td>
                     <td><%= "litter placeholder" %></td>
@@ -39,7 +39,6 @@
                         type: "button", class: "btn btn-primary" %></td>
                     <% else %>
                         <td><%= link_to 'View Ad', dog_advert_path(dog, dog.advert),
-                        # <td><%= link_to 'View Ad', "#", method: :get, 
                         type: "button", class: "btn btn-primary" %></td>
                     <% end %>
                     <td><%= link_to 'More details', dog, type: "button", class: "btn btn-success" %></td>

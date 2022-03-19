@@ -1,6 +1,6 @@
 class LittersController < ApplicationController
 
-  before_action :authenticate_admin!, except: [:schedule,:gallery]
+  before_action :authenticate_admin!, except: [:gallery]
 
   # should this be private?
   def litter_params

@@ -11,13 +11,8 @@
                 <th>Call Name</th>
                 <th>DOB</th>
                 <th>Breeder</th>
-                <th>Owner</th>
                 <th>Handler</th>
                 <th>Sex</th>
-                <th>Test Results</th>
-                <th>Parentage</th>
-                <th>Status</th>
-                <th>Litter</th>
             </tr>
         </thead>
 
@@ -26,14 +21,9 @@
                 <td><%= @dog.rname %></td>
                 <td><%= @dog.cname %></td>
                 <td><%= @dog.dob %></td>
-                <td><%= "breeder placeholder" %></td>
-                <td><%= @dog.owner %></td>
+                <td><%= @dog.breeder %></td>
                 <td><%= @dog.handler %></td>
                 <td><%= @dog.sex %></td>
-                <td><%= "test placeholder" %></td>
-                <td><%= "parentage placeholder" %></td>
-                <td><%= "status placeholder"%></td>
-                <td><%= "litter placeholder" %></td>
             </tr>
         </tbody>
     </table>

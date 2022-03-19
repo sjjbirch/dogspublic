@@ -11,7 +11,7 @@ class DogsController < ApplicationController
 
   def dog_params
     params.require(:dog).permit(  :rname, :cname,
-                                  :dob,  :owner, :handler, 
+                                  :dob, :handler, 
                                   :sex )
   end
   
@@ -38,7 +38,7 @@ class DogsController < ApplicationController
 
   def create
     @dog = current_user.dogs.build(dog_params)
-    if @dog.save
+    if @dog.update(breeder: current_user.email)
       flash[:success] = "Dog created"
       redirect_to dogs_path
     else

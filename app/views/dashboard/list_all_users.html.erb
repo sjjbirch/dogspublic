@@ -12,6 +12,7 @@
                 <th>Sales</th>
                 <th>Last Active</th>
                 <th>Last IP</th>
+                <th>Ban Status</th>
             </tr>
         </thead>
 
@@ -24,8 +25,13 @@
                     <td><%= user.seller_payments.count %></td>
                     <td><%= user.sign_in_count != 0 ? user.last_sign_in_at : 'Never signed in' %></td>
                     <td><%= user.last_sign_in_ip %></td>
-                    <td><%= link_to 'B&?', ban_path(id: user.id), 
+                    <<% if user.banned? %>
+                        <td><%= link_to 'unB&?', ban_path(id: user.id), 
+                        data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-success" %></td>
+                    <% else %>
+                        <td><%= link_to 'B&?', ban_path(id: user.id), 
                     data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
+                    <% end %>
                 </tr>
             <% end %>
         </tbody>
