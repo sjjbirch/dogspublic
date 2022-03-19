@@ -21,13 +21,14 @@
             <% end %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Shop for dogs <b class="caret"></b>
+                    Browse or buy dogs <b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><%= link_to "All dogs", adverts_path %></li>
-                            <li><%= link_to "Males", '#' %></li>
-                            <li><%= link_to "Females", '#' %></li>
+                            <li><%= link_to "Dogs for sale", adverts_path %></li>
                             <li class="divider"></li>
+                            <li><%= link_to "Males", '/boys' %></li>
+                            <li><%= link_to "Females", '/girls' %></li>
+                            <li><%= link_to "Puppies", '/puppies' %></li>
                             <li><%= link_to "Retired", '#' %></li>
                         </ul>
                 </li>

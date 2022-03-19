@@ -31,7 +31,7 @@ dog_list = [
 date = 1.year.ago
 dog_list.each do |rname, cname, owner, handler, sex, account|
     dog = Dog.new( rname: rname, cname: cname, dob: date,
-                    owner: owner, handler: handler, sex: sex, user_id: account )
+                    breeder: owner, handler: handler, sex: sex, user_id: account )
     dog.save!
     date = date - 45.days
 end

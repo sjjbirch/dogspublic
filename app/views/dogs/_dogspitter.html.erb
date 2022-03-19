@@ -1,8 +1,3 @@
-<%= render 'dashboard/admintoolbar' %>
-
-<h1>All Dogs</h1>
-
-<br>
 <div class="container">
     <table class="table table-striped table-hover">
         <thead>
@@ -32,19 +27,14 @@
                     <%# remove hover and active effects on buttons at some point %>
                     <%# if has attached advert then show, if no attached then new %>
                     <% if dog.advert.nil? %>
-                        <td><%= link_to 'Create Ad', new_dog_advert_path(dog.id),  
-                        type: "button", class: "btn btn-primary" %></td>
+                        <td>Not for sale.</td>
                     <% else %>
                         <td><%= link_to 'View Ad', dog_advert_path(dog, dog.advert),
+                        # <td><%= link_to 'View Ad', "#", method: :get, 
                         type: "button", class: "btn btn-primary" %></td>
                     <% end %>
-                    <td><%= link_to 'More details', dog, type: "button", class: "btn btn-success" %></td>
-                    <td><%= link_to 'Edit', edit_dog_path(dog), type: "button", class: "btn btn-warning" %></td>
-                    <td><%= link_to 'Destroy', dog, method: :delete,
-                    data: { confirm: 'Are you sure?' }, type: "button", class: "btn btn-danger" %></td>
                 </tr>
             <% end %>
         </tbody>
-
     </table>
 </div>

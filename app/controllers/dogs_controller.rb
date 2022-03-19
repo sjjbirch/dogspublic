@@ -1,5 +1,5 @@
 class DogsController < ApplicationController
-  # before_action :admin_signed_in?, only: [:destroy,:edit, :index]
+
   before_action :god_skip, only: [:build, :destroy, :edit, :update, :index]
   before_action :dog_instancer, only: [ :dog_ownership_filter, :show, :edit,
                                         :update, :destroy ]
@@ -25,7 +25,6 @@ class DogsController < ApplicationController
   def index
       @dogs = current_user.dogs.all
   end
-
  
   def show
   end
@@ -71,4 +70,15 @@ class DogsController < ApplicationController
     end
   end
 
+  def boys
+    @dogs = Dog.males
+  end  
+  
+  def girls
+    @dogs = Dog.females
+  end
+
+  def puppies
+    @dogs = Dog.puppers
+  end
 end

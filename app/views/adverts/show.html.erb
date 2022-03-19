@@ -3,5 +3,29 @@
     <h1><%= @advert.title %></h1>
     <p> <%= @advert.description %></p>
     <p><%= link_to 'Buy Now', buy_path(id: @advert.id) %></p>
-    
-<%= link_to "Back to my dogs", dogs_path %>
+
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Real Name</th>
+                <th>Call Name</th>
+                <th>DOB</th>
+                <th>Owner</th>
+                <th>Handler</th>
+                <th>Sex</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><%= @advert.dog.rname %></td>
+                <td><%= @advert.dog.cname %></td>
+                <td><%= @advert.dog.dob %></td>
+                <td><%= @advert.dog.owner %></td>
+                <td><%= @advert.dog.handler %></td>
+                <td><%= @advert.dog.sex %></td>
+            </tr>
+        </tbody>
+    </table>
+
+<%= link_to "Back", :back %>
