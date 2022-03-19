@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # admin tools
   get '/dashboard', to: 'dashboard#tools'
+  get '/userlist', to: 'dashboard#list_all_users'
 
   # litter pages
   resources :litters
