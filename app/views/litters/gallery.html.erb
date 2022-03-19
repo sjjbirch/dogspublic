@@ -9,23 +9,24 @@
     <!-- Indicators -->
         <ol class="carousel-indicators">
         <% litter.gallery_image.each_with_index do |img, index| %>
-            <% if index == 0%>
-                <li data-target="<%= litter.identifier %>Carousel" data-slide-to="0" class="active"></li>
+            <% if index == 0 %>
+                <li data-target="#<%= litter.identifier %>Carousel" data-slide-to="0" class="active"></li>
             <% else %>
-                <li data-target="<%= litter.identifier %>Carousel" data-slide-to="<%= index %>"></li>
+                <li data-target="#<%= litter.identifier %>Carousel" data-slide-to="<%= index %>"></li>
             <% end %>
         <% end %>
         </ol>
 
+    <!-- Wrapper for slides? -->
         <div class="carousel-inner">
     <% litter.gallery_image.each_with_index do |img, index| %>
         <% if index == 0 %>
             <div class="item active">
-                <img src=<%= url_for(img) %> alt="<%= index+1 %>">
+                <img class="center-block" src=<%= url_for(img) %> alt="<%= index+1 %>">
             </div>
         <% else %>
             <div class="item">
-                <img src=<%= url_for(img) %> alt="<%= index+1 %>">
+                <img class="center-block" src=<%= url_for(img) %> alt="<%= index+1 %>">
             </div>
         <% end %>
     <% end %>

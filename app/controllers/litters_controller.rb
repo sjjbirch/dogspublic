@@ -2,6 +2,13 @@ class LittersController < ApplicationController
 
   before_action :authenticate_admin!, except: [:schedule,:gallery]
 
+  # should this be private?
+  def litter_params
+    params.require(:litter).permit( :identifier, :planned_date, :expected_date,
+                                    :actual_date, :expected_size, 
+                                    :actual_size, :gallery_image => [] )
+  end
+
   def new
     @litter = Litter.new
   end
@@ -12,17 +19,9 @@ class LittersController < ApplicationController
       flash[:success] = "Litter created"
       redirect_to litters_path
     else
-      # come back to
       flash[:success] = "Litter creation failed"
       render 'new'
     end
-  end
-
-  # should this be private?
-  def litter_params
-    params.require(:litter).permit( :identifier, :planned_date, :expected_date,
-                                    :actual_date, :expected_size, 
-                                    :actual_size, :gallery_image => [] )
   end
 
   def show
@@ -57,7 +56,6 @@ class LittersController < ApplicationController
 
   def gallery
     @highlightedlitter = Litter.last(3)
-    # Litter.gallery_image.map{|img| ({ image: url_for(img) })}
   end
 
   def schedule
