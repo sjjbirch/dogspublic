@@ -2,7 +2,7 @@ class Litter < ApplicationRecord
     before_validation :in_past?
 
     has_many_attached :gallery_image, dependent: :purge_later
-    
+
     validates :identifier, format: { without: /\s/, 
     message: "No whitespace allowed in litter names." }, uniqueness: true
     validates :planned_date, presence: true
