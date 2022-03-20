@@ -8,6 +8,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :dogs
   accepts_nested_attributes_for :buyer_payments
 
+  scope :sophisticated_demonstration_of_scope_extension_and_database_querying, ->{
+  left_joins(:dogs).group(:id).order('COUNT(dogs.id) DESC')
+}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
