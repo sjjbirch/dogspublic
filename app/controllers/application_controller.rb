@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def is_banned?
     if current_user.present? && current_user.banned
+      # query the database if someone's logged on to see if they've been the victim of badmin boolean abuse
       sign_out current_user
       flash[:danger] = "This account has been suspended...."
       root_path

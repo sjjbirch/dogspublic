@@ -12,6 +12,7 @@ class LittersController < ApplicationController
 
   def litter_instancer
     @litter = Litter.find(params[:id])
+    # find the litter where id matches our params
   end
 
   def new
@@ -37,6 +38,7 @@ class LittersController < ApplicationController
 
   def update
     @litter = Litter.find(params[:id])
+    # find the litter where id matches our params
     if @litter.update(litter_params)
       flash[:success] = "#{@litter.identifier} updated"
       redirect_to litters_path
@@ -49,6 +51,7 @@ class LittersController < ApplicationController
   def destroy
     @littername = Litter.find(params[:id]).identifier
     Litter.find(params[:id]).destroy
+    # I don't remember any of this or what I was doing when I did it, nice use of string interpolation though
     flash[:success] = "#{@littername} deleted"
     redirect_to litters_path
   end
@@ -59,10 +62,12 @@ class LittersController < ApplicationController
 
   def gallery
     @highlightedlitter = Litter.last(3)
+    # SELECT "litters".* FROM "litters" ORDER BY "litters"."id" DESC LIMIT $1  [["LIMIT", 3]]
   end
 
   def schedule
     # lmao wtf was I thinking here?
+    # On the deployed version you can still call this route.
     render 'schedule'
   end
 

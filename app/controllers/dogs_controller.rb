@@ -5,7 +5,7 @@ class DogsController < ApplicationController
                                         :update, :destroy ]
   before_action :dog_ownership_filter, only: [:edit, :update, :destroy]
 
-# advanced scoping extensions for full marks
+# advanced scoping extensions for full marks, querying only the most important Dog information
   def boys
     @dogs = Dog.males
   end  
@@ -20,6 +20,7 @@ class DogsController < ApplicationController
 
   def dog_instancer
     @dog = Dog.find(params[:id])
+    # instantiate a dog from the database that matches the one in params
   end
 
   def dog_params
@@ -30,6 +31,7 @@ class DogsController < ApplicationController
   
   def dog_ownership_filter
     unless admin_signed_in? || current_user.id == @dog.user.id
+      # hit the database twice to make sure we're allowed to mess with the dog either because we're an admin or because we're the dog's owner
         flash[:danger] = "You can't do that unless you own it."
         redirect_to dogs_path
     end
@@ -37,6 +39,7 @@ class DogsController < ApplicationController
 
   def index
       @dogs = current_user.dogs.all
+      # instantiate the dogs that belong to the user
   end
  
   def show
@@ -44,6 +47,7 @@ class DogsController < ApplicationController
   
   def new
     @dog = Dog.new
+    # not a puppy, necessarily
   end
 
   def build
@@ -53,6 +57,7 @@ class DogsController < ApplicationController
     
     @dog = current_user.dogs.build(dog_params)
     if @dog.update(breeder: current_user.email)
+      # if you add the dog to the website, you'd damned better have been the one to breed it
       flash[:success] = "Dog created"
       redirect_to dogs_path
     else

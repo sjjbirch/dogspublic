@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   # litter pages
   resources :litters
-  get 'upcoming', to: 'litters#schedule'
   get 'litter_gallery', to: 'litters#gallery'
 
   # dog pages

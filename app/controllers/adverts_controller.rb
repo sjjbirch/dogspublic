@@ -17,10 +17,12 @@ class AdvertsController < ApplicationController
 
  def advert_instancer
    @advert = Advert.find(params[:id])
- end
+   # querie the database for adverts that match the :id in params
+end
 
  def ad_ownership_filter
     unless @advert.dog.user.id == current_user.id 
+      # querie our instance from the database and devise current_user to see if they match
         flash[:success] = "You can't do that unless you own it."
         redirect_to dogs_path
     end
@@ -30,6 +32,7 @@ class AdvertsController < ApplicationController
    @dog = @advert.dog
    @seller = @dog.user.id
    @buyer = current_user.id
+   # generate instances off our instances, so we can query while we query in this __fabulous__ method
 
    if @seller == @buyer
       flash[:danger] = "You can't buy your own dog"
@@ -38,6 +41,7 @@ class AdvertsController < ApplicationController
       if Payment.new(buyer_id: @buyer, seller_id: @seller, transaction_time: DateTime.now, dogsold: @dog.id ).save
          @advert.delete
          @dog.update(user_id: @buyer )
+         # creating payments from adverts. Note that no such methods exist in payments controller.
          flash[:success] = "Dog Bought"
          redirect_to dogs_path
       else
@@ -49,6 +53,7 @@ class AdvertsController < ApplicationController
 
  def new
     @dog = Dog.find(params[:dog_id])
+   #  getting a dog instance from params so we can instantiate our new ad
     @advert = Advert.new
  end
 
@@ -57,6 +62,7 @@ class AdvertsController < ApplicationController
 
  def create
     @dog = Dog.find(params[:dog_id])
+   #  as above, both are used in different places
     @advert = @dog.build_advert(ad_params)
     if @advert.save
       flash[:success] = "Dog Advertised"
@@ -71,6 +77,7 @@ class AdvertsController < ApplicationController
 
   def myads
   @adverts = current_user.adverts
+   # selects adverts where user = current user etc  
    end
 
  def edit
