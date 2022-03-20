@@ -10,10 +10,9 @@
                 <th>Real Name</th>
                 <th>Call Name</th>
                 <th>DOB</th>
-                <th>Owner</th>
+                <th>Breeder</th>
                 <th>Handler</th>
                 <th>Sex</th>
-                <th>Litter</th>
                 <th>Associated Account</th>
             </tr>
         </thead>
@@ -27,10 +26,7 @@
                     <td><%= dog.breeder %></td>
                     <td><%= dog.handler %></td>
                     <td><%= dog.sex %></td>
-                    <td><%= "litter placeholder" %></td>
                     <td><%= dog.user.email %></td>
-                    <%# remove hover and active effects on buttons at some point %>
-                    <%# if has attached advert then show, if no attached then new %>
                     <% if dog.advert.nil? %>
                         <td><%= link_to 'Create Ad', new_dog_advert_path(dog.id),  
                         type: "button", class: "btn btn-primary" %></td>

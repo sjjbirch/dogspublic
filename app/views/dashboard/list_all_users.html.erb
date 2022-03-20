@@ -10,6 +10,7 @@
                 <th>User Email</th>
                 <th>Purchases</th>
                 <th>Sales</th>
+                <th>Dogs</th>
                 <th>Last Active</th>
                 <th>Last IP</th>
                 <th>Ban Status</th>
@@ -23,6 +24,7 @@
                     <td><%= user.email %></td>
                     <td><%= user.buyer_payments.count %></td>
                     <td><%= user.seller_payments.count %></td>
+                    <td><%= user.dogs.count %></td>
                     <td><%= user.sign_in_count != 0 ? user.last_sign_in_at : 'Never signed in' %></td>
                     <td><%= user.last_sign_in_ip %></td>
                     <<% if user.banned? %>

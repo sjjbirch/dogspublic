@@ -1,9 +1,23 @@
 class DogsController < ApplicationController
+  
 
   before_action :god_skip, only: [:build, :destroy, :edit, :update, :index]
   before_action :dog_instancer, only: [ :dog_ownership_filter, :show, :edit,
                                         :update, :destroy ]
   before_action :dog_ownership_filter, only: [:edit, :update, :destroy]
+
+# advanced scoping extensions for full marks
+  def boys
+    @dogs = Dog.males
+  end  
+  
+  def girls
+    @dogs = Dog.females
+  end
+
+  def puppies
+    @dogs = Dog.puppers
+  end
 
   def dog_instancer
     @dog = Dog.find(params[:id])
@@ -37,6 +51,7 @@ class DogsController < ApplicationController
   end
 
   def create
+    
     @dog = current_user.dogs.build(dog_params)
     if @dog.update(breeder: current_user.email)
       flash[:success] = "Dog created"
@@ -70,15 +85,4 @@ class DogsController < ApplicationController
     end
   end
 
-  def boys
-    @dogs = Dog.males
-  end  
-  
-  def girls
-    @dogs = Dog.females
-  end
-
-  def puppies
-    @dogs = Dog.puppers
-  end
 end

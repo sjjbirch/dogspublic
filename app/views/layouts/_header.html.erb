@@ -1,6 +1,8 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
-        <%= link_to "dog webapp", root_path, id: "logo" %>
+
+        <%= link_to image_tag("/assets/logo.png", id: "logo", class: "img-responsive img-rounded"), root_path %>
+
         <nav>
             <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>

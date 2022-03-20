@@ -14,5 +14,6 @@ class ApplicationController < ActionController::Base
           authenticate_user!
         end
     end
+    
 
 end

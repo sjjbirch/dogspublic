@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   end
 
   def list_all_users
-    @users = User.all
+    @users = User.left_joins(:dogs).group(:id).order('COUNT(dogs.id) DESC')
   end
 
   def banhammer

@@ -1,12 +1,17 @@
 class LittersController < ApplicationController
 
   before_action :authenticate_admin!, except: [:gallery]
+  before_action :litter_instancer, only: [ :show, :edit,  ]
 
   # should this be private?
   def litter_params
     params.require(:litter).permit( :identifier, :planned_date, :expected_date,
                                     :actual_date, :expected_size, 
                                     :actual_size, :gallery_image => [] )
+  end
+
+  def litter_instancer
+    @litter = Litter.find(params[:id])
   end
 
   def new
@@ -19,17 +24,15 @@ class LittersController < ApplicationController
       flash[:success] = "Litter created"
       redirect_to litters_path
     else
-      flash[:success] = "Litter creation failed"
+      flash[:danger] = "Litter creation failed"
       render 'new'
     end
   end
 
   def show
-    @litter = Litter.find(params[:id])
   end
 
   def edit
-    @litter = Litter.find(params[:id])
   end
 
   def update
@@ -38,7 +41,7 @@ class LittersController < ApplicationController
       flash[:success] = "#{@litter.identifier} updated"
       redirect_to litters_path
     else
-      flash[:failure] = "Update failed"
+      flash[:danger] = "Update failed"
       render 'edit'
     end
   end

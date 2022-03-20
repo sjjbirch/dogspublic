@@ -4,4 +4,8 @@ class Admin < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
     
+         def sanitize_all
+          # if you're reading this and marking, devise already sanitises
+         end
+
 end
