@@ -1,5 +1,4 @@
 class DogsController < ApplicationController
-  
 
   before_action :god_skip, only: [:build, :destroy, :edit, :update, :index]
   before_action :dog_instancer, only: [ :dog_ownership_filter, :show, :edit,
